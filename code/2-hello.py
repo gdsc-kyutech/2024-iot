@@ -1,5 +1,4 @@
 import network
-import socket
 from time import sleep
 import machine
 import urequests

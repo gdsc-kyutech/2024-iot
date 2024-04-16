@@ -37,21 +37,22 @@ def send_line(token, message):
     response.close()
 
 
-def get_sensor_temp():
-    sensor_temp = machine.ADC(4)
-    conversion_factor = 3.3 / 65535
+def get_outside_sensor_temp():
+    sensor_temp = machine.ADC(28)
+    conversion_factor = 3.3 / (65535)
     reading = sensor_temp.read_u16() * conversion_factor
-    temperature = 27 - (reading - 0.706)/0.001721
+    temperature = reading/0.01 - 50
     return temperature
 
 
 try:
     ip = connect()
     while True:
-        if rp2.bootsel_button() == 1:
-            # LEDが光っている間はLINE送信中
-            machine.Pin("LED", machine.Pin.OUT).on()
-            send_line(token, str(get_sensor_temp()))
-            machine.Pin("LED", machine.Pin.OUT).off()
+        # LEDが光っている間はLINE送信中
+        machine.Pin("LED", machine.Pin.OUT).on()
+        send_line(token, str(get_outside_sensor_temp()))
+        machine.Pin("LED", machine.Pin.OUT).off()
+
+        sleep(3)
 except KeyboardInterrupt:
     machine.reset()

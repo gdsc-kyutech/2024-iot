@@ -127,8 +127,45 @@ except KeyboardInterrupt:
 
 大体の部屋の温度は27度前後ですが、実際の温度は部屋の環境によって異なります。（近くの人やスタッフに何度くらいが出力されたか聞いてみましょう！）
 
+この本体温度センサはICに内蔵されており、本来はCPUの温度を測るためのものです。
+
+そのため、大量の演算などを行うと温度が上昇し、正確な温度を取得できなくなることがあります。
+
 ## (Optional) GPIOを利用した温度監視システムの構築
 
+より正確に温度を取得するために、外部の温度センサを利用してみましょう。
 
+以下のコードは、GP28（ADC2）ピンに接続された外部温度センサから温度を取得し、2秒ごとにシェルに表示するものです。
+
+```python
+import machine
+import utime
+
+while True:
+    sensor_temp = machine.ADC(28)
+    conversion_factor = 3.3 / 65535
+    reading = sensor_temp.read_u16() * conversion_factor
+
+    temperature = reading/0.01 - 50
+    print(temperature)
+    utime.sleep(2)
+```
+
+これを参考に [本体温度センサを通知するコード](./code/2-temp.py) の `get_sensor_temp` 関数を `get_outside_sensor_temp` に変更して、外部温度センサの値を取得してみましょう。
+
+また、通知されるタイミングをボタンではなく、一定時間（3秒から10秒程度）ごとに変更してみましょう。
+
+> [!NOTE]
+> ヒント
+>
+> - 外部温度センサのピン番号は、本体温度センサと異なります。
+> - 外部温度センサの値を取得するための計算式は、本体温度センサと異なります。
+> - 一定時間ごとに処理を行う方法はいくつかありますが、`sleep` 関数を利用すると簡単に実装できます。
+
+[フルバージョン（答え）](./code/2-temp.py)
+
+今回使用している温度センサは、[MCP9700](https://akizukidenshi.com/goodsaffix/mcp9700a.pdf) です。
+
+最大+-2度の誤差はありますが、手で触るだけで温度が変わるのでぜひ試してみてください。
 
 [目次に戻る](README.md)
