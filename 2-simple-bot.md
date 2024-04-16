@@ -139,7 +139,7 @@ except KeyboardInterrupt:
 
 ```python
 import machine
-import utime
+from time import sleep
 
 while True:
     sensor_temp = machine.ADC(28)
@@ -148,7 +148,7 @@ while True:
 
     temperature = reading/0.01 - 50
     print(temperature)
-    utime.sleep(2)
+    sleep(2)
 ```
 
 これを参考に [本体温度センサを通知するコード](./code/2-temp.py) の `get_sensor_temp` 関数を `get_outside_sensor_temp` に変更して、外部温度センサの値を取得してみましょう。
