@@ -1,5 +1,7 @@
 # 2. LINE Notify を利用した簡易Botの開発
 
+本章では、Raspberry Pi Pico に接続された本体温度センサの値を取得し、LINE Notify を使って通知してみましょう。
+
 ## LINE Notify アクセストークンの取得
 
 ### 1. LINE Notify にログイン
@@ -7,6 +9,10 @@
 [LINE Notify](https://notify-bot.line.me/ja/) にアクセスし、右上のボタンからログインします。
 
 ログイン後、右上の自分の名前をクリックし、`マイページ` を選択します。
+
+直感的に登録できますが、ボタンの位置がわかりにくい場合は以下の記事を参考にしてください。
+
+[LINE Notifyの初め方](https://zenn.dev/protoout/articles/18-line-notify-setup)
 
 ### 2. LINE Notify トークンの取得
 
@@ -49,27 +55,37 @@ def connect():
 
 def send_line(token, message):
     # LINE Notify APIを使ってメッセージを送信
+
+    # 送信先URL
     url = "https://notify-api.line.me/api/notify"
+    # ヘッダー情報（ここにトークンを含める）
     headers = {
         "Authorization": "Bearer " + token,
         "Content-Type": "application/x-www-form-urlencoded"
     }
+    # 送信するメッセージ（message=メッセージ内容）
     data = "message=" + message
+    # POSTリクエストを送信
     response = urequests.post(url, data=data, headers=headers)
     if response.status_code == 200:
+        # 送信成功時の処理
         print("Notification sent successfully")
     else:
+        # 送信失敗時の処理
         print("Failed to send notification, status code:", response.status_code)
     response.close()
 
 
 try:
+    # WiFiに接続
     ip = connect()
     while True:
+        # ボタンが押されたらLINEにメッセージを送信
         if rp2.bootsel_button() == 1:
-            # LEDが光っている間はLINE送信中
+            # LINE送信中はLEDを光らせる
             machine.Pin("LED", machine.Pin.OUT).on()
             send_line(token, message)
+            # LINE送信完了後はLEDを消す
             machine.Pin("LED", machine.Pin.OUT).off()
 except KeyboardInterrupt:
     machine.reset()
@@ -106,9 +122,12 @@ ssid, password, token, message を設定して、Thonnyで実行してみまし�
 ...
 
 def get_sensor_temp():
+    # 本体温度センサの値を取得
     sensor_temp = machine.ADC(4)
+    # 3.3Vを基準にして、0-65535の範囲で取得（Raspberry Pi Picoは3.3V）
     conversion_factor = 3.3 / 65535
     reading = sensor_temp.read_u16() * conversion_factor
+    # 本体温度センサの値から温度を計算
     temperature = 27 - (reading - 0.706)/0.001721
     return temperature
 
