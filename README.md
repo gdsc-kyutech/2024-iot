@@ -21,12 +21,17 @@
 
 ###  Intermediate
 
-##### [3. LINE Messaging API を利用した本格Botの開発](3-practical-bot.md)
+##### [3-a. LINE Messaging API を利用した本格Botの開発 (前半)](3-a-practical-bot.md)
 
 1. LINE Developersアカウントの作成
-1. チャネルアクセストークンの取得
+1. Messaging API利用のための初期設定
+1. Google Apps Scriptを書いてみる
 1. Webhook URLの設定
-1. サーバプログラムの作成
+1. メッセージ内容に応じた処理の分岐
+
+##### [3-b. LINE Messaging API を利用した本格Botの開発 (後半)](3-b-practical-bot.md)
+
+1. Pico Wとの連携
 1. Botのカスタマイズ
 
 ### Advanced
