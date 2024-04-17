@@ -66,7 +66,7 @@ Google Apps Script(GAS)を用いて，より本格的な機能を利用できる
 1. 同様に左上の`無題のプロジェクト`をクリックして名前を`LINE Bot`に変更しておきます．
 
 1. 書きかけの`myFunction`関数がありますがこれを削除して，以下のコードに置き換えます．
-    ```
+    ```js
     function doPost(e){
         let sheet = SpreadsheetApp.getActive().getActiveSheet();
         sheet.appendRow([new Date(), e.postData.contents]);
@@ -95,7 +95,7 @@ Google Apps Script(GAS)を用いて，より本格的な機能を利用できる
 
 1. `Webhookの利用`をオンにして，`Webhook URL`の`検証`をクリックします．  
 LINE Developersのコンソール画面に`成功`と表示され，元のGoogleスプレッドシートに以下のような文字列が記録されればOKです．
-    ```
+    ```json
     2024/04/16 15:00:00 {"destination":"U3a4...","events":[]}
     ```
 
@@ -103,14 +103,14 @@ LINE Developersのコンソール画面に`成功`と表示され，元のGoogle
 
 1. LINEアプリから作成したBotアカウントに対して，何らかのメッセージを送信してみます．  
 Googleスプレッドシートに以下のような文字列が記録されればOKです．
-    ```
+    ```json
     2024/04/16 15:20:00	{"destination":"U3a4...","events":[{"type":"message","message":{"type":"text","id":"5040...","quoteToken":"vFKAy...","text":"送信した文字列"},"webhookEventId":"01HV...","deliveryContext":{"isRedelivery":false},"timestamp":1713...,"source":{"type":"user","userId":"U97c..."},"replyToken":"ed08...","mode":"active"}]}
     ```
 
     少し読みにくいので整形すると，以下のようなJSON形式のメッセージが出力されたことを確認できます．  
     今回は[こちらのWebサービス](https://rakko.tools/tools/63/)を使って整形しました．
 
-    ```
+    ```json
     {
         "destination": "U3a4...",
         "events": [
@@ -147,7 +147,7 @@ Googleスプレッドシートに以下のような文字列が記録されれ�
 1. Google Apps Scriptの編集画面を開きます．
 
 1. 以下の行を見つけ，
-    ```
+    ```js
     sheet.appendRow([new Date(), e.postData.contents]);
     ```  
     `e.postData.contents`を`JSON.parse(e.postData.contents).events[0].message.text`に差し替えます．
@@ -165,7 +165,7 @@ Googleスプレッドシートに以下のような文字列が記録されれ�
 
 1. 先ほどの変更により，コードの3行目がとても長く読みにくいコードになっていると思います．  
 これは美しくないので，以下のように書き換えます．
-    ```
+    ```js
     function doPost(e){
         let sheet = SpreadsheetApp.getActive().getActiveSheet();
         let data = JSON.parse(e.postData.contents);

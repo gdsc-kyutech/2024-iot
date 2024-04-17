@@ -27,7 +27,7 @@
 左上の`無題のスプレッドシート`をクリックして名前を`Pico W`に変更しておきます．
 
 1. 上部の`拡張機能`から`Apps Script`を開き，書きかけの`myFunction`関数を削除して以下のコードに置き換えます．
-    ```
+    ```js
     function doPost(e){
         let sheet = SpreadsheetApp.getActive().getActiveSheet();
         sheet.appendRow([new Date(), e.postData.contents]);
@@ -51,12 +51,12 @@
 
 1. Windowsの方はコマンドプロンプト(Win+R→`cmd`→Enter)またはWSL上のBash，Macの方はターミナル.appで以下のコマンドを実行します．  
 PowerShellでは`curl`を`curl.exe`とする必要があります．
-    ```
+    ```sh
     curl -X POST -H "Accept: application/json" -H "Content-type: application/json" -d "テストメッセージ" ウェブアプリのURL
     ```
 
 実行後，
-```
+```html
 <!DOCTYPE html><html>〜スクリプトが完了しましたが、何も返されませんでした。〜</html>
 ```
 と出力されますが，スプレッドシートに正しく情報を記録できていればOKです．
@@ -64,7 +64,7 @@ PowerShellでは`curl`を`curl.exe`とする必要があります．
 #### Pico Wのセットアップ
 
 1. Thonnyを開いて，Pico Wへ以下のコードを書き込んでください．
-    ```
+    ```python
     (TBD)
     ```
 
