@@ -42,8 +42,8 @@
 ...
 import urequests
 
-# SSID, password, LINE Notify Token, 通知メッセージを設定してください
-ssid = "ssid"
+ssid = "KIT-EVENT"
+# password, LINE Notify Token, 通知メッセージを設定してください
 password = "password"
 token = "token"
 message = "hello, Raspberry Pi"
@@ -91,7 +91,7 @@ except KeyboardInterrupt:
     machine.reset()
 ```
 
-ssid, password, token, message を設定して、Thonnyで実行してみましょう。
+password, token, message を設定して、Thonnyで実行してみましょう。
 
 本体のボタンを押すと、LINEにメッセージが送信されます。
 

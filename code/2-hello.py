@@ -3,7 +3,7 @@ from time import sleep
 import machine
 import urequests
 
-ssid = "ssid"
+ssid = "KIT-EVENT"
 password = "password"
 token = "token"
 message = "hello, Raspberry Pi"
