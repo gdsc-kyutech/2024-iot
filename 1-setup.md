@@ -5,8 +5,8 @@
 今回はMicroPythonというプログラミング言語を使って，プログラミングをしていきます．
 そのための実行環境として **Thonny** というソフトウェアを使用します．自分のパソコンのOSにあったものをインストールしましょう．
 
-- [Windows版Thonny](https://github.com/thonny/thonny/releases/download/v4.1.4/thonny-4.1.4.exe)
-- [macOS版Thonny](https://github.com/thonny/thonny/releases/download/v4.1.4/thonny-4.1.4.pkg)
+### Windows
+[こちら](https://ksl.ci.kyutech.ac.jp/~iwai/thonny-4.1.4.exe)からダウンロードします．ダウンロードできたら`thonny-4.1.4.exe`をクリックして実行します．
 
 <details>
 <summary>Windows版Thonnyのインストール手順</summary>
@@ -21,11 +21,19 @@
 8.  Great success!: `Finish`をクリックします．
 </details>
 
+### macOS
+Homebrewをインストールしている場合は以下のコマンドをターミナル.appで実行するとダウンロードできます．
+```sh
+brew install thonny
+```
+インストールしているかわからない場合は，[こちら](https://github.com/thonny/thonny/releases/download/v4.1.4/thonny-4.1.4.pkg)からダウンロードします．ダウンロードできたら`thonny-4.1.4.pkg`をクリックして実行します．
+
 Thonnyのインストールが済んだら，起動してみましょう．初回起動時は以下のスクリーンショットのような画面が表示されます．
+
 ![Thonny初回起動時の画面](img/first_launch.png)
 今回は「日本語」と設定した場合の画面で説明を行います．
 
-## picozeroライブラリをインストール
+<!-- ## picozeroライブラリをインストール
 
 次にRaspberry Pi PicoのLEDなどを簡単に扱うためのライブラリである **picozero** をThonnyにインストールします．
 
@@ -35,7 +43,7 @@ Thonnyのインストールが済んだら，起動してみましょう．初�
 ![](img/lib_install2.png)
 3. 検索結果の`picozero`をクリックします．
 4. `インストール`をクリックします．
-![](img/lib_install3.png)
+![](img/lib_install3.png) -->
 
 ## Pico Wを接続
 
@@ -44,7 +52,7 @@ Pico Wとパソコンを接続します．
 1. Pico WのUSB端子にMicro-USBケーブルを接続します．（**この段階ではまだパソコンとMicro-USBケーブルは接続しないでください**）
 2. 写真の赤枠で囲んでいる`BOOTSEL`ボタンを押したままで，Micro-USBケーブルをパソコンと接続します．
 ![](img/connect1.png)
-3. 接続するとスクリーンショットのようなエクスプローラーのウィンドウが開きます．この状態で次の節に移ります．
+3. 接続するとスクリーンショットのようなエクスプローラーのウィンドウが開きます．`BOOTSEL`ボタンを離します．エクスプローラーのウィンドウを閉じずに，次の節に移ります．
 ![](img/connect2.png)
 
 ## ファームウェアを焼き込み
@@ -64,19 +72,22 @@ Pico WでMicroPythonを実行するためには，ファームウェアを書き
 1. まずは，Pico WについているLEDを点滅させてみます．`pico_led.on()`でLEDを点灯，`pico_led.off()`でLEDを消灯できます．以下のプログラムをコピーして，Thonnyにペーストします．
 
 ```python
+import machine
 import time
-from picozero import pico_led
+
+led = machine.Pin("LED", machine.Pin.OUT)
 
 while (True):
-    pico_led.on()
+    led.on()
     time.sleep(0.5)
-    pico_led.off()
+    led.off()
     time.sleep(0.5)
 ```
 
 2. ペーストして，メニューバーの下の左から3つ目のフロッピーディスクのアイコンをクリックします．
 ![](img/run1.png)
 3. 「どこに保存しますか？」と聞かれるので `Raspberry Pi Pico` を選択します．
+
 ![](img/run2.png)
 4. ファイル名は`led1.py`など任意の名前をつけて保存します．
 > [!IMPORTANT]
@@ -96,16 +107,18 @@ LEDが点滅したかと思います．実行を停止したい場合は右か�
 import network
 import socket
 from time import sleep
-from picozero import pico_led
 import machine
 
-ssid = 'SSIDを入力'
-password = 'パスワードを入力'
+ssid = "KIT-EVENT"
+# pwsswordの値を書き換えます
+password = "パスワードを入力"
+
+led = machine.Pin("LED", machine.Pin.OUT)
 
 def serve(connection):
     # Webサーバを起動
-    state = 'OFF'
-    pico_led.off()
+    state = "OFF"
+    led.off()
     while True:
         client = connection.accept()[0]
         request = client.recv(1024)
@@ -114,12 +127,12 @@ def serve(connection):
             request = request.split()[1]
         except IndexError:
             pass
-        if request == '/lighton?':
-            pico_led.on()
-            state = 'ON'
-        elif request =='/lightoff?':
-            pico_led.off()
-            state = 'OFF'
+        if request == "/lighton?":
+            led.on()
+            state = "ON"
+        elif request =="/lightoff?":
+            led.off()
+            state = "OFF"
         html = webpage(state)
         client.send(html)
         client.close()
@@ -155,10 +168,10 @@ def connect():
     wlan.active(True)
     wlan.connect(ssid, password)
     while wlan.isconnected() == False:
-        print('Waiting for connection...')
+        print("Waiting for connection...")
         sleep(1)
     ip = wlan.ifconfig()[0]
-    print(f'Connected on {ip}')
+    print(f"Connected on {ip}")
     return ip
 
 try:
