@@ -34,7 +34,7 @@ Homebrewをインストールしている場合は以下のコマンドをター
 ```sh
 brew install thonny
 ```
-インストールしているかわからない場合は，[こちら](https://github.com/thonny/thonny/releases/download/v4.1.4/thonny-4.1.4.pkg)からダウンロードします．ダウンロードできたら`thonny-4.1.4.pkg`をクリックして実行します．
+インストールしているかわからない場合は，[こちら](https://ksl.ci.kyutech.ac.jp/~iwai/thonny-4.1.4.pkg)からダウンロードします．ダウンロードできたら`thonny-4.1.4.pkg`をクリックして実行します．
 
 ### 起動
 Thonnyのインストールが済んだら，起動してみましょう．初回起動時は以下のスクリーンショットのような画面が表示されます．
@@ -130,7 +130,7 @@ from time import sleep
 import machine
 
 ssid = "KIT-EVENT"
-# pwsswordの値を書き換えます
+# passwordの値を書き換えます
 password = "パスワードを入力"
 
 led = machine.Pin("LED", machine.Pin.OUT)
