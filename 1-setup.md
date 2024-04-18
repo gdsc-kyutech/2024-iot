@@ -31,6 +31,7 @@ brew install thonny
 Thonnyのインストールが済んだら，起動してみましょう．初回起動時は以下のスクリーンショットのような画面が表示されます．
 
 ![Thonny初回起動時の画面](img/first_launch.png)
+
 今回は「日本語」と設定した場合の画面で説明を行います．
 
 <!-- ## picozeroライブラリをインストール
@@ -89,6 +90,7 @@ while (True):
 3. 「どこに保存しますか？」と聞かれるので `Raspberry Pi Pico` を選択します．
 
 ![](img/run2.png)
+
 4. ファイル名は`led1.py`など任意の名前をつけて保存します．
 > [!IMPORTANT]
 > 末尾に`.py`を忘れずにつけます．
