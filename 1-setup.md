@@ -48,12 +48,12 @@ Thonnyのインストールが済んだら，起動してみましょう．初�
 次にRaspberry Pi PicoのLEDなどを簡単に扱うためのライブラリである **picozero** をThonnyにインストールします．
 
 1. メニューバーの **ツール** > **パッケージを管理** を開きます．
-![](img/lib_install1.png)
+![](img/1-lib_install1.png)
 2. 検索欄に `picozero` と入力し，`PyPIを検索`をクリックします．
-![](img/lib_install2.png)
+![](img/1-lib_install2.png)
 3. 検索結果の`picozero`をクリックします．
 4. `インストール`をクリックします．
-![](img/lib_install3.png) -->
+![](img/1-lib_install3.png) -->
 
 ## Pico Wを接続
 
@@ -62,10 +62,10 @@ Pico Wとパソコンを接続します．
 1. Pico WのUSB端子にMicro-USBケーブルを接続します．（**この段階ではまだパソコンとMicro-USBケーブルは接続しないでください**）
 
 2. 写真の赤枠で囲んでいる`BOOTSEL`ボタンを押したままで，Micro-USBケーブルをパソコンと接続します．
-![](img/connect1.png)
+![](img/1-connect1.png)
 
 3. 接続するとスクリーンショットのようなエクスプローラーのウィンドウが開きます．`BOOTSEL`ボタンを離します．エクスプローラーのウィンドウを閉じずに，次の節に移ります．
-![](img/connect2.png)
+![](img/1-connect2.png)
 
 ## ファームウェアを焼き込み
 
@@ -78,7 +78,7 @@ Pico WでMicroPythonを実行するためには，ファームウェアを書き
 3. `RPI_PICO_W-20240222-v1.22.2.uf2`のコピーが完了したら，Thonnyを開きます．
 
 4. 右下の`ローカルPython3・ThonnyのPython`をクリックして，スクリーンショットのように`MicroPython (Raspberry Pi Pico)`を選択します．
-![](img/firmware.png)
+![](img/1-firmware.png)
 
 ここまでで，環境構築が完了しました．次の節からは実際にMicroPythonのプログラムを実行してみます．
 
@@ -100,24 +100,24 @@ while (True):
 ```
 
 2. ペーストして，メニューバーの下の左から3つ目のフロッピーディスクのアイコンをクリックします．
-![](img/run1.png)
+![](img/1-run1.png)
 
 3. 「どこに保存しますか？」と聞かれるので `Raspberry Pi Pico` を選択します．
 
-![](img/run2.png)
+![](img/1-run2.png)
 
 4. ファイル名は`led1.py`など任意の名前をつけて保存します．
 > [!IMPORTANT]
 > 末尾に`.py`を忘れずにつけます．
 5. メニューバーの下の左から4つ目のアイコンをクリックして，プログラムを実行します．
-![](img/run3.png) 
+![](img/1-run3.png) 
 
 6. LEDが点滅したかと思います．実行を停止したい場合は右から2つ目のアイコンをクリックして，実行を停止します．
-![](img/run4.png)
+![](img/1-run4.png)
 
 > [!IMPORTANT]
 > Windows版Thonnyで 6. の操作を行い，ファイルの編集，保存を行おうとした時に以下のようなエラーが出る場合があります．その際はもう一度`STOP`のアイコンをクリックすることで保存や実行などができるようになります．
-> ![](img/error.png)
+> ![](img/1-error.png)
 ## Lチカ (Wi-Fi)
 
 この節でこの章は最後になります．最後はPico Wの上でWebサーバを動かして，そのWebページにアクセスしてLEDの点灯・消灯を制御します．
@@ -204,11 +204,11 @@ except KeyboardInterrupt:
 
 実行すると，スクリーンショットのように`Connected on XXX.XXX.XXX.XXX`と表示されたかと思います．
 
-![](img/final1.png)
+![](img/1-final1.png)
 
 その`XXX.XXX.XXX.XXX`という数字とピリオドで構成された文字列を，ブラウザのアドレスバー（普段`google.com`などと入力するところ）に入力します．
 
 そうするとスクリーンショットのようなページが開きます．`Light on`もしくは`Light off`のボタンをクリックすると，LEDの点灯・消灯を制御できます．
-![](img/final2.png)
+![](img/1-final2.png)
 
 [目次に戻る](README.md)
