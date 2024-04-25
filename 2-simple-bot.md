@@ -138,7 +138,7 @@ try:
         if rp2.bootsel_button() == 1:
             # LEDが光っている間はLINE送信中
             machine.Pin("LED", machine.Pin.OUT).on()
-            send_line(token, message + str(get_sensor_temp()))
+            send_line(token, str(get_sensor_temp()))
             machine.Pin("LED", machine.Pin.OUT).off()
 except KeyboardInterrupt:
     machine.reset()
