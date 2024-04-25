@@ -185,7 +185,7 @@ while True:
 > - 外部温度センサの値を取得するための計算式は、本体温度センサと異なります。
 > - 一定時間ごとに処理を行う方法はいくつかありますが、`sleep` 関数を利用すると簡単に実装できます。
 
-[フルバージョン（答え）](./code/2-temp.py)
+[フルバージョン（答え）](./code/2-sense-temp.py)
 
 今回使用している温度センサは、[MCP9700](https://akizukidenshi.com/goodsaffix/mcp9700a.pdf) です。
 
