@@ -7,7 +7,6 @@
 ##### [1. Pico Wのセットアップ](1-setup.md)
 
 1. Thonnyをインストール
-1. picozeroライブラリをインストール
 1. Pico Wを接続
 1. ファームウェアを焼き込み
 1. Lチカ (local)
