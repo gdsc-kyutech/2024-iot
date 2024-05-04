@@ -63,9 +63,62 @@ PowerShellでは`curl`を`curl.exe`とする必要があります．
 
 #### Pico Wのセットアップ
 
-1. Thonnyを開いて，Pico Wへ以下のコードを書き込んでください．
+1. Thonnyを開いて，Pico Wへ以下のコードを書き込んでください．  
+Wi-Fiのパスワードとデプロイ時に発行されるURLの挿入を忘れないようにしてくださいね．
+
     ```python
-    (TBD)
+    import network
+    from time import sleep
+    import machine
+    import urequests
+
+    ssid = "KIT_EVENT"
+    password = "要置き換え"
+    url = "https://script.google.com/macros/s/この部分を置き換える必要があります/exec"
+
+    def connect():
+        # Wi-Fiに接続
+        wlan = network.WLAN(network.STA_IF)
+        wlan.active(True)
+        wlan.connect(ssid, password)
+        while wlan.isconnected() == False:
+            print("Waiting for connection...")
+            sleep(1)
+        ip = wlan.ifconfig()[0]
+        print(f"Connected on {ip}")
+        return ip
+
+
+    def send_sheet(message):
+        headers = {
+            "Content-Type": "application/json"
+        }
+        response = urequests.post(url, data=message, headers=headers)
+        if response.status_code == 200:
+            print("Notification sent successfully")
+        else:
+            print("Failed to send notification, status code:", response.status_code)
+        response.close()
+
+
+    def get_outside_sensor_temp():
+        sensor_temp = machine.ADC(28)
+        conversion_factor = 3.3 / (65535)
+        reading = sensor_temp.read_u16() * conversion_factor
+        temperature = reading/0.01 - 50
+        return temperature
+
+    try:
+        ip = connect()
+        while True:
+            # LEDが光っている間は送信中
+            machine.Pin("LED", machine.Pin.OUT).on()
+            send_sheet(str(get_outside_sensor_temp()))
+            machine.Pin("LED", machine.Pin.OUT).off()
+            sleep(3)
+
+    except KeyboardInterrupt:
+        machine.reset()
     ```
 
 実行後，スプレッドシートに値が記録されていればOKです．
