@@ -156,4 +156,7 @@ APIの扱いに慣れている人は，[Messaging APIリファレンス](https:/
 [Chat GPTなどの生成系AIと連携させる](https://zenn.dev/robes/articles/c8dda8b42afab8)ことでより簡単に高機能なBotを作れるかもしれません．ぜひいろいろと試してみましょう！  
 困ったときは遠慮なく近くのCore-team Memberにお声掛けくださいね．
 
+[4-(a) MQTT・クラウドサービスを使った本格IoT](4-mqtt.md) へ進む  
+[4-(b) 他のボードやセンサ，ディスプレイなどを試してみる](4-other.md) へ進む
+
 [目次に戻る](README.md)

@@ -193,4 +193,6 @@ while True:
 
 参考 : https://qiita.com/smart_agri_lab/items/0a63b7cf0ad71e2015ba
 
+[3-a. LINE Messaging API を利用した本格Botの開発 (前半)](3-a-practical-bot.md) へ進む
+
 [目次に戻る](README.md)

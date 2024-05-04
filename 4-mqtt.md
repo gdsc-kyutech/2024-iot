@@ -22,5 +22,6 @@
 
 参考： https://qiita.com/narutaro/items/1a16ff1321f5044afaf0
 
+[4-(b) 他のボードやセンサ，ディスプレイなどを試してみる](4-other.md) へ進む
 
 [目次に戻る](README.md)
