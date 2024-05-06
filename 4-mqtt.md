@@ -19,7 +19,7 @@
 参考：https://tech-and-investment.com/raspberrypi-picow-6-mqtt/
 
 > [!NOTE]
-> デフォルトのMosquitoは外部との通信ができないため、`mosquitto.conf` を編集して外部からの接続を許可する必要があります。
+> デフォルトのMosquittoは外部との通信ができないため、`mosquitto.conf` を編集して外部からの接続を許可する必要があります。
 >
 > `mosquitto -c mosquitto.conf` で設定ファイルを指定して起動します。
 >
