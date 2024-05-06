@@ -24,7 +24,8 @@
 > `mosquitto -c mosquitto.conf` で設定ファイルを指定して起動します。
 >
 > 参考：https://qiita.com/vfuji/items/6d01e9f613b92d638574#%E6%BA%96%E5%82%99%E4%BD%9C%E6%A5%AD
-
+> [!NOTE]
+> Pico WにMosquittoを扱うためのライブラリ`umqtt.simple`をインストールする必要がありますが，「パッケージを管理」で検索する際，`umqtt`で検索してもヒットしないため，`umqtt.simple`と検索するようにしましょう．
 ##  Microsoft Azure IoT Hubで時系列データを見る
 
 参考
