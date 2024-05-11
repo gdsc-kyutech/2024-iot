@@ -72,7 +72,7 @@ Wi-Fiのパスワードとデプロイ時に発行されるURLの挿入を忘れ
     import machine
     import urequests
 
-    ssid = "KIT_EVENT"
+    ssid = "KIT-EVENT"
     password = "要置き換え"
     url = "https://script.google.com/macros/s/この部分を置き換える必要があります/exec"
 
