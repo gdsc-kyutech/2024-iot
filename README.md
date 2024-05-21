@@ -50,9 +50,9 @@ M5StackやArdiono，その他各種電子部品をご用意しています．
 - **[スライド](slide.pdf)**  
 講座で使用したスライドです．
 
-- イベント録画(準備中)  
+- **[イベント録画](https://youtu.be/Ic1-McBGZow)**  
 本資料を用いて，2024/05/11(土)に九州工業大学飯塚キャンパスポルト棟にてハンズオンイベントを開催しました．  
-イベント詳細はこちら(準備中)から
+イベント詳細は[こちら](https://gdsc.community.dev/events/details/developer-student-clubs-kyushu-institute-of-technology-fukuoka-japan-presents-razupaipico-wgamoraerulinewoshi-tsutaiothanzuon/)から
 
 ## FAQ
 
